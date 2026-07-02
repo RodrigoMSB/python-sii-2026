@@ -19,7 +19,8 @@ aprenderás Python paso a paso.
 | # | Nombre | Módulo | Estado |
 |---|--------|--------|:------:|
 | 01 | [El primer día en Rentas](labs/lab-01-primer-dia/) | Módulo 1 — Fundamentos | ✅ Disponible |
-| 02 | La planilla de verdad (pandas) | Módulo 2 — Datos | 🚧 En construcción |
+| 02 | [El cuaderno crece](labs/lab-02-cuaderno-crece/) | Módulo 1 — Estructuras, funciones y excepciones | ✅ Disponible |
+| 03 | Los números del puerto (NumPy) | Módulo 2 — Datos | 🚧 En construcción |
 
 ## Dos rutas, un mismo destino
 

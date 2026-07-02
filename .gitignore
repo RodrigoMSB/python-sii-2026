@@ -16,6 +16,7 @@ __pycache__/
 # labs/*/  matchea labs/<lab>/archivo, pero NO labs/<lab>/plantillas/archivo
 # ni labs/<lab>/soluciones/archivo, que sí forman parte del curso.
 labs/*/triaje.py
+labs/*/consolidar.py
 labs/*/desafio.py
 labs/*/RESPUESTAS.md
 labs/*/salidas/
