@@ -1,0 +1,26 @@
+codigo,nombre,estado,deuda
+PS-1001-G,Pescadería La Miríada,VIGENTE,0
+PS-1003-G,Cocinería Doña Eureka,VENCIDA,185000
+PS-1005-C,Abarrotes El Arenario,VENCIDA,92000
+PS-1006-G,Café La Palanca,VIGENTE,45000
+PS-1007-T,Kayaks Bahía Serena,SUSPENDIDA,310000
+PS-1009-G,Sanguchería El Puerto,VENCIDA,127500
+PS-1011-T,Tour Cavernas del Sur,VENCIDA,260000
+PS-1012-G,Heladería Polo Austral,VIGENTE,18000
+PS-1013-C,Botillería La Sirena,SUSPENDIDA,405000
+PS-1015-T,Cabañas Punta Norte,VENCIDA,149000
+PS-1017-G,Marisquería El Nivel del Mar,VIGENTE,76000
+PS-1018-C,Paquetería Correo del Istmo,VENCIDA,58000
+PS-1020-G,Jugos La Corriente,VENCIDA,33500
+PS-1022-T,Buceo Fondo Claro,SUSPENDIDA,520000
+PS-1024-C,Ciber La Antena,VENCIDA,71000
+PS-1026-C,Imprenta El Estilete,VIGENTE,38000
+PS-1030-T,Miradores del Istmo,SUSPENDIDA,290000
+PS-1031-G,Pastelería Pi,VIGENTE,27500
+PS-1034-G,Cevichería El Teorema,VENCIDA,121000
+PS-1037-G,Amasandería La Palanca Dos,VIGENTE,64000
+PS-1038-C,Tornería El Eje,SUSPENDIDA,205000
+PS-1041-C,Bodegaje El Silo,VIGENTE,12000
+PS-1043-G,Rotisería Los Tres Vientos,VIGENTE,0
+PS-1044-C,Cerrajería El Candado Sabio,VENCIDA,0
+PS-1045-T,Paseo Lancha La Gaviota,VIGENTE,0

@@ -1,0 +1,17 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 06 — Transformar y combinar · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Módulo 3 (2ª parte): transformación, combinación, agregación y el primer
+#  gráfico con Matplotlib. matplotlib es la dependencia más pesada del curso;
+#  se descarga una sola vez. Versiones pineadas EXACTAS (reproducibilidad).
+[project]
+name = "lab-06-transformar-combinar"
+version = "1.0.0"
+description = "Lab 06 del curso Python SII 2026 — transformar, combinar (merge/concat), agregar (groupby) y graficar el tablero del Concejo."
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+    "openpyxl==3.1.5",
+    "matplotlib==3.11.0",
+]
