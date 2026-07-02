@@ -1,0 +1,17 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 04 — Las cuatro fuentes · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Cierra el Módulo 2: leer datos desde archivos (CSV, Excel, JSON) y una
+#  base de datos SQLite. openpyxl es el motor que pandas usa para .xlsx.
+#  SQLite no necesita dependencia: sqlite3 viene con Python (stdlib).
+#  Versiones pineadas EXACTAS para que todos usen lo mismo (reproducibilidad).
+[project]
+name = "lab-04-cuatro-fuentes"
+version = "1.0.0"
+description = "Lab 04 del curso Python SII 2026 — lectura de CSV/Excel/JSON/SQLite, transacciones y exportación."
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+    "openpyxl==3.1.5",
+]
