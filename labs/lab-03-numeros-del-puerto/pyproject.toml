@@ -1,0 +1,16 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 03 — Los números del puerto · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  PRIMER lab con dependencias externas. uv las descargará la primera vez
+#  (requiere Internet). Van pineadas EXACTAS (pandas 3.0.3: la 3.0.4 fue retirada de PyPI —yank— por segfaults en
+#  datetime; ver docs/troubleshooting.md, H-03). Van pineadas EXACTAS para que todos —macOS y Windows—
+#  usen la misma versión y los resultados sean reproducibles.
+[project]
+name = "lab-03-numeros-del-puerto"
+version = "1.0.0"
+description = "Lab 03 del curso Python SII 2026 — panorama anual con NumPy y pandas."
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+]
