@@ -18,6 +18,7 @@ __pycache__/
 labs/*/triaje.py
 labs/*/consolidar.py
 labs/*/panorama.py
+labs/*/fuentes.py
 labs/*/desafio.py
 labs/*/RESPUESTAS.md
 labs/*/salidas/
