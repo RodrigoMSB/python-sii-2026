@@ -80,14 +80,16 @@ Es determinista: reconstruye las cuatro idénticas a las originales.
 
 ## Síntomas de siempre
 
-### `ModuleNotFoundError: No module named 'datos'` / no encuentra las fuentes
+### `FileNotFoundError: ... datos/fuentes/pagos.csv` (u otra fuente)
 
-Ejecutaste `fuentes.py` desde/ubicado en la carpeta equivocada. Corre el de la
-**raíz del lab**, parado en la raíz:
+Ejecutaste `fuentes.py` desde/ubicado en la carpeta equivocada. Como el programa
+busca las fuentes en `datos/fuentes/` **relativo a donde está el script**, si lo
+corres desde otra carpeta no las encuentra. Corre el de la **raíz del lab**,
+parado en la raíz:
 ```bash
 cp soluciones/fuentes.py guia/fuentes.py && cd guia && uv run python fuentes.py
-#   error: no encuentra datos/fuentes/...
-cd .. && rm guia/fuentes.py && uv run python fuentes.py   # cura
+#   FileNotFoundError: [Errno 2] No such file or directory: '.../guia/datos/fuentes/pagos.csv'
+cd .. && rm guia/fuentes.py && uv run python fuentes.py   # cura: parado en la raíz, sí las encuentra
 ```
 
 ### El verificador dice que falta `fuentes.py`

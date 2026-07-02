@@ -10,10 +10,17 @@ Produce:
   - multas.json             (JSON UTF-8, indentado, ensure_ascii=False)
   - contribuyentes.db       (SQLite, tabla contribuyentes)
 
-Es idempotente: borra y reconstruye todo desde cero en cada corrida. Es la
-ÚNICA herramienta autorizada a escribir en datos/fuentes/ (para el alumno esos
-archivos son de SOLO LECTURA). El recuperador lo invoca para reponer fuentes
-corrompidas.
+Idempotente y git-friendly: por defecto genera SOLO las fuentes que falten (así
+correrlo con todo presente es un no-op y no ensucia el repositorio). Con
+`--force` reconstruye las cuatro desde cero (útil para reponer una fuente
+corrompida: bórrala y regenera, o usa --force).
+
+Nota (H-04): el `.xlsx` que produce openpyxl NO es byte-determinista (incrusta
+una marca de tiempo), así que regenerarlo cambia sus bytes. Por eso el modo por
+defecto es "solo lo que falta": las fuentes versionadas no se reescriben salvo
+que se pidan con --force. Es la ÚNICA herramienta autorizada a escribir en
+datos/fuentes/ (para el alumno esos archivos son de SOLO LECTURA). El recuperador
+la invoca (sin --force) para reponer fuentes que falten.
 
 Decisión documentada: el CSV se escribe con el módulo `csv` de la stdlib (para
 mostrar la escritura "a mano"); el XLSX con pandas+openpyxl; el JSON con `json`
@@ -81,6 +88,7 @@ def generar_db():
 def main() -> int:
     lc.titulo("Generador de fuentes — Lab 04")
     CARPETA.mkdir(parents=True, exist_ok=True)
+    forzar = "--force" in sys.argv
     cont = lc.Contador()
 
     for etiqueta, funcion, ruta in (
@@ -89,6 +97,9 @@ def main() -> int:
         ("multas.json", generar_json, RUTA_JSON),
         ("contribuyentes.db", generar_db, RUTA_DB),
     ):
+        if ruta.exists() and not forzar:
+            lc.ok(f"{etiqueta} ya está (no la toco).", cont)
+            continue
         try:
             funcion()
             lc.ok(f"{etiqueta} generado.", cont)
@@ -100,6 +111,9 @@ def main() -> int:
     if codigo == 0:
         print()
         lc.info(f"Las cuatro fuentes están en: {CARPETA}")
+        if not forzar:
+            lc.info("Se regeneró solo lo que faltaba. Para reconstruir todo: "
+                    "uv run python bin/generar_fuentes.py --force")
     return codigo
 
 
