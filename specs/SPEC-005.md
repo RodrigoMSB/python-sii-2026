@@ -3,8 +3,29 @@
 > **Proyecto:** Curso Programación en Python — SII 2026 · "Puerto Siracusa"
 > **Emitido por:** El Arquitecto (Claude) · **Aprobado por:** Rodrigo Silva Bravo (PO)
 > **Ejecutor:** mocito (Claude Code) — dueño del repositorio y único constructor
-> **Fecha:** 2026-07-02 · **Versión:** 1.0
+> **Fecha:** 2026-07-02 · **Versión:** 1.1
 > **Dependencias:** repo con tags `lab-01/02/03-v1.0.0` (SPEC-002/003/004 completados)
+
+> **Bitácora de enmiendas**
+> - **SPEC-005 v1.1 — Hallazgo H-04 (generador de fuentes), ratificado por el
+>   Arquitecto** (2026-07-02):
+>   - **(a) Causa raíz:** un `.xlsx` es internamente un **ZIP** que incrusta
+>     marcas de tiempo (en las entradas del zip y en `docProps/core.xml`), por lo
+>     que openpyxl **no** produce el archivo byte a byte idéntico entre
+>     generaciones (fijar propiedades del workbook y timestamps del zip no basta).
+>     El `.csv`, `.json` y `.db` sí son deterministas.
+>   - **(b) Idempotencia redefinida:** la idempotencia del generador se mide por el
+>     **estado final** (las cuatro fuentes válidas y presentes en `datos/fuentes/`),
+>     **no** por los bytes exactos. Por eso §5.5 cambia de "borra y crea todo desde
+>     cero" a "**regenera solo lo que falte** por defecto; `--force` reconstruye
+>     todo". Con las cuatro presentes es un no-op y el repo versionado no se ensucia
+>     (resuelve la contradicción §5.5 ↔ §12-E08, ya anticipada por la nota de §12-E07).
+>   - **(c) Rider — fuente corrupta pero presente:** como el modo por defecto no
+>     reescribe lo presente, la cura de una fuente **dañada pero en su lugar** es
+>     **borrar el archivo + correr el generador**. El **recuperador** aplica esa
+>     misma lógica automáticamente: detecta las fuentes ilegibles, las elimina y las
+>     repone. `docs/troubleshooting.md` documenta la cura manual; ambos ajustados en
+>     el commit de la enmienda.
 
 ---
 
@@ -146,8 +167,12 @@ Script que construye `datos/fuentes/` desde la semilla:
   `ensure_ascii=False`, indentado 2.
 - `contribuyentes.db`: SQLite, tabla `contribuyentes (codigo TEXT PRIMARY
   KEY, nombre TEXT NOT NULL, giro TEXT NOT NULL)`, 10 INSERT, commit.
-- **Idempotente**: regenera todo desde cero. Es la ÚNICA herramienta
-  autorizada a escribir en `datos/fuentes/`.
+- **Idempotente por ESTADO FINAL (v1.1, H-04):** por defecto regenera **solo
+  las fuentes que falten** (así, con las cuatro presentes es un no-op y no
+  reescribe el `.xlsx`, que no es determinista byte a byte). Con `--force`
+  reconstruye las cuatro desde cero. La cura de una fuente corrupta-pero-presente
+  es **borrarla + regenerar**; el recuperador (§8.3) lo hace automáticamente. Es
+  la ÚNICA herramienta autorizada a escribir en `datos/fuentes/`.
 
 ## 6. Contratos de código
 Rigen **C1–C10**. Agregados:
@@ -197,8 +222,11 @@ inválido→False/tabla NO crece) · salidas con informe (2,072,500) + 4
 exportados legibles · RESPUESTAS sin marcadores.
 
 ### 8.3 `recuperar_lab.py`
-Estándar + PASO NUEVO: invoca `generar_fuentes.py` primero, luego solución →
-raíz → ejecutar → interrogatorio intacto/pendiente.
+Estándar + PASO NUEVO (v1.1, H-04): primero **detecta y elimina las fuentes
+ilegibles** (corruptas o dañadas) y luego invoca `generar_fuentes.py` (modo
+solo-faltantes) para reponer lo que falte —incluyendo lo recién borrado—; después
+solución → raíz → ejecutar → interrogatorio intacto/pendiente. Así las fuentes
+sanas no se reescriben (git limpio) y las dañadas se reponen.
 
 ## 9. Guías (redacción de mocito; convenciones y cápsulas de siempre)
 

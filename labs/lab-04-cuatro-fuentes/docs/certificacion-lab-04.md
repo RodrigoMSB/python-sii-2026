@@ -30,7 +30,15 @@
 
 ## Hallazgos
 
-### H-04 — El `.xlsx` de openpyxl no es byte-determinista *(resuelto por diseño; deviación de §5.5 a ratificar)*
+### H-04 — El `.xlsx` de openpyxl no es byte-determinista *(RESUELTO — ratificado por el Arquitecto, SPEC-005 v1.1)*
+
+> **Resolución (2026-07-02):** el Arquitecto ratificó el cambio. `specs/SPEC-005.md`
+> se enmendó a **v1.1** (bitácora con causa raíz, idempotencia por estado final y el
+> rider de fuente corrupta). El generador regenera solo-faltantes (`--force` = todo);
+> el **recuperador** ahora **detecta y borra las fuentes ilegibles** antes de
+> regenerar (probado: corromper `multas.json` presente → recuperador lo elimina y lo
+> repone idéntico, git limpio); `docs/troubleshooting.md` documenta la cura manual
+> (borrar + regenerar). Tag `lab-04-v1.0.0` liberado. Detalle técnico original abajo.
 
 - **Síntoma:** `generar_fuentes.py`, tal como pide §5.5 ("idempotente, **borra y
   crea** todo desde cero"), regenera el `permisos_eventos.xlsx` con bytes
@@ -54,12 +62,10 @@
 
 ## Veredicto final
 
-**CERTIFICADO CON OBSERVACIÓN (H-04).**
+**CERTIFICADO.**
 
 Los 9 escenarios (E01–E09) cumplen íntegros y los Labs 01–03 siguen certificados.
-La única observación es H-04: el cambio del generador de "borra y crea" (§5.5) a
-"regenera solo lo que falta", necesario porque el `.xlsx` no es reproducible byte
-a byte y §5.5 chocaba con E08. No altera contratos, cifras ni nombres, y el propio
-§12-E07 anticipaba la variación de binarios. Queda a ratificación del Arquitecto/PO
-antes de crear el tag `lab-04-v1.0.0`; con la ratificación se enmienda §5.5 (v1.1)
-y se libera el tag.
+La única observación (H-04: el `.xlsx` no reproducible byte a byte, que obligó a
+redefinir la idempotencia del generador por estado final) fue **ratificada por el
+Arquitecto**: `specs/SPEC-005.md` se enmendó a **v1.1**, el recuperador maneja
+fuentes corruptas y se liberó el tag `lab-04-v1.0.0`. Sin observaciones pendientes.

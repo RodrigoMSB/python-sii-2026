@@ -70,11 +70,34 @@ El CSV no está en la codificación que pandas asumió. Los nuestros son UTF-8
 
 ### Falta una fuente (`datos/fuentes/...`)
 
-El verificador de entorno te lo dirá. **Cura:** reconstrúyelas con la imprenta:
+El verificador de entorno te lo dirá. **Cura:** reconstruye lo que falte con la
+imprenta:
 ```bash
 uv run python bin/generar_fuentes.py
 ```
-Es determinista: reconstruye las cuatro idénticas a las originales.
+Por defecto regenera **solo las fuentes que faltan** (así no reescribe las que ya
+están bien). Para reconstruir las cuatro desde cero: agrega `--force`.
+
+### Una fuente está PRESENTE pero CORRUPTA (no se puede leer)
+
+Como el generador por defecto solo repone lo que falta, no reescribe una fuente
+dañada que sigue en su lugar. **Cura:** bórrala y regénerala —
+```bash
+rm datos/fuentes/multas.json          # el archivo dañado (Windows: Remove-Item ...)
+uv run python bin/generar_fuentes.py  # la repone (idéntica)
+```
+o deja que el **recuperador** lo haga por ti: detecta las fuentes ilegibles, las
+borra y las repone en un paso:
+```bash
+uv run python bin/recuperar_lab.py
+```
+
+> ℹ️ **Por qué "borrar + regenerar" y no solo "regenerar":** el `.xlsx` es un ZIP
+> con marcas de tiempo internas, así que no es reproducible byte a byte
+> (hallazgo H-04). Para no reescribir en vano las fuentes buenas (y ensuciar el
+> repositorio), el generador solo toca lo que falta; por eso una fuente corrupta
+> se elimina primero. La idempotencia aquí se mide por el **estado final** (las
+> cuatro fuentes válidas y presentes), no por los bytes exactos del xlsx.
 
 ---
 

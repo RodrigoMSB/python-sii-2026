@@ -15,6 +15,8 @@ Nunca responde el interrogatorio.
 from __future__ import annotations
 
 import shutil
+import json
+import sqlite3
 import subprocess
 import sys
 from pathlib import Path
@@ -24,19 +26,65 @@ sys.path.insert(0, str(RAIZ))
 
 import lib_comunes as lc  # noqa: E402
 
+FUENTES = RAIZ / "datos" / "fuentes"
+
+
+def _leible(nombre):
+    """Devuelve True si la fuente existe y se puede leer; False si falta o está corrupta."""
+    ruta = FUENTES / nombre
+    if not ruta.exists():
+        return False
+    try:
+        import pandas as pd
+        if nombre.endswith(".csv"):
+            pd.read_csv(ruta)
+        elif nombre.endswith(".xlsx"):
+            pd.read_excel(ruta, sheet_name="Permisos")
+        elif nombre.endswith(".json"):
+            with ruta.open(encoding="utf-8") as f:
+                json.load(f)
+        elif nombre.endswith(".db"):
+            con = sqlite3.connect(ruta)
+            try:
+                con.execute("SELECT COUNT(*) FROM contribuyentes").fetchone()
+            finally:
+                con.close()
+        return True
+    except Exception:  # noqa: BLE001 - cualquier fallo de lectura = corrupta
+        return False
+
+
+def _limpiar_corruptas():
+    """Borra las fuentes presentes pero corruptas para que el generador las reponga.
+
+    Regla (H-04): la cura de una fuente corrupta-pero-presente es borrar el archivo
+    dañado y regenerar. El generador en modo por defecto solo repone lo que falta,
+    así que primero eliminamos lo que no se puede leer.
+    """
+    borradas = []
+    for nombre in ("pagos.csv", "permisos_eventos.xlsx", "multas.json", "contribuyentes.db"):
+        ruta = FUENTES / nombre
+        if ruta.exists() and not _leible(nombre):
+            ruta.unlink()
+            borradas.append(nombre)
+    return borradas
+
 
 def main() -> int:
     lc.titulo("Recuperador del Lab 04")
     cont = lc.Contador()
 
-    # 1) Regenerar las fuentes (determinista → no ensucia git).
+    # 1) Reponer fuentes: borrar las corruptas (H-04) y regenerar lo que falte.
+    corruptas = _limpiar_corruptas()
+    if corruptas:
+        lc.info(f"Fuentes corruptas detectadas y eliminadas para reponerlas: {', '.join(corruptas)}.")
     gen = subprocess.run([sys.executable, str(RAIZ / "bin" / "generar_fuentes.py")],
                          cwd=str(RAIZ), capture_output=True, text=True)
     if gen.returncode == 0:
-        lc.ok("Fuentes reconstruidas en datos/fuentes/ (csv, xlsx, json, db).", cont)
+        lc.ok("Fuentes verificadas y repuestas en datos/fuentes/ (csv, xlsx, json, db).", cont)
     else:
         pista = gen.stderr.strip().splitlines()[-1] if gen.stderr.strip() else "Revisa openpyxl."
-        lc.error("No pude regenerar las fuentes.", pista, cont)
+        lc.error("No pude reponer las fuentes.", pista, cont)
 
     # 2) Reponer fuentes.py y regenerar salidas.
     origen = RAIZ / "soluciones" / "fuentes.py"
