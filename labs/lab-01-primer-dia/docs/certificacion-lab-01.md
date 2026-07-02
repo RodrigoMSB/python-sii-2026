@@ -19,7 +19,7 @@
 | **E01** Flujo feliz (Explorador) | ✅ CUMPLE | Preparador `✔ 5/5`, `.venv/` creado. `uv run python --version` → `Python 3.13.7`. Triaje → `Patentes vigentes    : 13`, `Deuda total          : $2350000 CLP`, `salidas/informe_triaje.txt` creado. Verificador sin RESPUESTAS → `✘ 11/12`, exit 1, único fallo el interrogatorio. Con las 5 respuestas → `✔ 12/12`, exit 0, mensaje de Don Arquímedes. |
 | **E02** Artesano a medio camino | ✅ CUMPLE | Plantilla sin tocar → `✘ 3/12`, exit 1, los 3 cálculos con valor obtenido vs esperado (`contar_vigentes: obtuvo 0, se esperaba 13`, etc.). Tras completar SOLO el TODO 1 a mano → `contar_vigentes` pasa (oficial y sorpresa); `codigos_vencidas` y `deuda_total` siguen fallando con pistas. |
 | **E03** Tramposo (anti-loro) | ✅ CUMPLE | `triaje.py` con las 3 funciones devolviendo los valores oficiales hardcodeados. 3 corridas: en las 3, los 3 checks del cuaderno oficial pasan pero los 3 del **cuaderno sorpresa** fallan (dataset aleatorio distinto cada vez). `✘ 8/12`, exit 1 siempre. |
-| **E04** Perdido (ubicación) | ⚠️ CUMPLE con observación | Ver **Hallazgo H-01**. El comando **literal** del spec (`uv run python ../triaje.py` desde `guia/`) **no** reproduce el error: Python pone el directorio del script (la raíz) en `sys.path` y `datos` sí se encuentra. La **intención** del escenario sí se cumple: la reproducción real (tener/ejecutar `triaje.py` dentro de `guia/`) da `ModuleNotFoundError: No module named 'datos'`, está documentada en `docs/troubleshooting.md` con síntoma y cura, y la cura verificada funciona (volver a la raíz → `13` vigentes). |
+| **E04** Perdido (ubicación) | ✅ CUMPLE | Re-certificado con el comando corregido (SPEC-002 v2.1, H-01 ratificado): `cp soluciones/triaje.py guia/triaje.py && cd guia && uv run python triaje.py` → `ModuleNotFoundError: No module named 'datos'`, exit 1. Limpieza `rm guia/triaje.py` OK. Síntoma y cura documentados en `docs/troubleshooting.md`; cura verificada (volver a la raíz → `Patentes vigentes    : 13`, exit 0). |
 | **E05** Rompe cosas | ✅ CUMPLE | Borrar `salidas/informe_triaje.txt` → `[ERROR] No existe salidas/informe_triaje.txt` + pista de re-ejecutar, exit 1; aplicar cura → `✔ 12/12`. Introducir `SyntaxError` (quitar un `:`) → `[ERROR] triaje.py falló al cargar: SyntaxError: expected ':'` + pista, exit 1; **0 tracebacks crudos** (el verificador no explota). |
 | **E06** Rezagado | ✅ CUMPLE | `recuperar_lab.py` → `✔ 3/3`: repone `triaje.py`, regenera `salidas/informe_triaje.txt` y copia `RESPUESTAS.md` **sin responder** (5 marcadores). Verificador → `✘ 11/12` (solo falta el interrogatorio). La comprensión no se regala. |
 | **E07** Idempotencia | ✅ CUMPLE | Preparador 2ª y 3ª vez seguidas → `✔ 5/5`, exit 0, sin errores ni duplicaciones. Bonus: `recuperar_lab.py` respeta un `RESPUESTAS.md` ya empezado (`lo respeto, no lo piso`). |
@@ -27,7 +27,15 @@
 
 ## Hallazgos
 
-### H-01 — El comando literal de E04 no reproduce `No module named 'datos'` *(no bloqueante; requiere ratificación del Arquitecto)*
+### H-01 — El comando literal de E04 no reproducía `No module named 'datos'` *(RESUELTO — ratificado por el Arquitecto, SPEC-002 v2.1)*
+
+> **Resolución (2026-07-02):** el Arquitecto ratificó H-01 con el fix propuesto.
+> `specs/SPEC-002.md` se enmendó a **v2.1** corrigiendo el paso de E04 (ubicar
+> `triaje.py` en `guia/` y ejecutarlo ahí, con limpieza posterior `rm guia/triaje.py`).
+> E04 se **re-certificó** con el comando corregido: reproduce
+> `No module named 'datos'` (exit 1) y la cura funciona. Escenario ✅ CUMPLE.
+> El detalle técnico original se conserva abajo como registro.
+
 
 - **Síntoma:** el paso literal del spec —`cd guia && uv run python ../triaje.py`—
   **no falla**: imprime el informe normal (`Patentes vigentes    : 13`).
@@ -58,11 +66,10 @@
 
 ## Veredicto final
 
-**CERTIFICADO CON OBSERVACIÓN.**
+**CERTIFICADO.**
 
-Los 8 escenarios se ejecutaron; 7 cumplen íntegros y E04 cumple en intención
-(síntoma real reproducible, documentado y con cura funcional), con la salvedad de
-que el **comando literal** de E04 no dispara el error por semántica de `sys.path`
-de Python. El laboratorio es funcional y pedagógicamente completo; el único punto
-abierto (H-01) es un ajuste del **guion de pruebas** del spec, no del lab, y queda
-a ratificación del Arquitecto.
+Los 8 escenarios (E01–E08) se ejecutaron y **cumplen íntegros**. El único punto
+que estaba abierto —H-01, un ajuste del **guion de pruebas** de E04— fue ratificado
+por el Arquitecto y corregido en `specs/SPEC-002.md` **v2.1**; E04 se re-certificó
+con el comando corregido y quedó ✅ CUMPLE. El laboratorio es funcional y
+pedagógicamente completo, sin observaciones pendientes.

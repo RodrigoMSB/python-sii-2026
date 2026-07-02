@@ -3,7 +3,16 @@
 > **Proyecto:** Curso Programación en Python — SII 2026 · "Puerto Siracusa"
 > **Emitido por:** El Arquitecto (Claude) · **Aprobado por:** Rodrigo Silva Bravo (PO)
 > **Ejecutor:** mocito (Claude Code) — dueño del repositorio y ÚNICO constructor
-> **Fecha:** 2026-07-01 · **Versión:** 2.0 — **SUPERSEDE Y ANULA a SPEC-001**
+> **Fecha:** 2026-07-01 · **Versión:** 2.1 — **SUPERSEDE Y ANULA a SPEC-001**
+
+> **Bitácora de enmiendas**
+> - **SPEC-002 v2.1 — E04 corregido por hallazgo H-01** (2026-07-02, ratificado por
+>   el Arquitecto): el paso del escenario E04 (§11) se reescribe. El comando
+>   original `uv run python ../triaje.py` desde `guia/` no reproducía
+>   `No module named 'datos'` (Python coloca el directorio del script —la raíz—
+>   en `sys.path`). Se reemplaza por ubicar `triaje.py` en la carpeta equivocada y
+>   ejecutarlo ahí, con limpieza posterior. Corrección del **guion de pruebas**,
+>   no del laboratorio.
 
 ---
 
@@ -393,9 +402,14 @@ veredicto por escenario.
   retornando hardcodeados los valores oficiales (13 / lista de 8 códigos /
   2350000) · correr el verificador **3 veces** → las 3 veces fallan checks
   del cuaderno sorpresa, exit 1 siempre.
-- **E04 — Perdido:** ejecutar el triaje desde `guia/` → falla con
-  `No module named 'datos'`; confirmar que el síntoma Y la cura están en
-  `docs/troubleshooting.md` y que la cura funciona.
+- **E04 — Perdido (corregido en v2.1 por H-01):** ubicar una copia de
+  `triaje.py` en la carpeta equivocada y ejecutarla ahí:
+  `cp soluciones/triaje.py guia/triaje.py && cd guia && uv run python triaje.py`
+  → falla con `No module named 'datos'` (porque `sys.path[0]` pasa a ser `guia/`,
+  donde no hay `datos/`). Limpieza posterior como parte del escenario:
+  `rm guia/triaje.py` (Windows: `Remove-Item guia\triaje.py`). Confirmar que el
+  síntoma Y la cura están en `docs/troubleshooting.md` y que la cura funciona
+  (volver a la raíz y ejecutar el `triaje.py` de la raíz).
 - **E05 — Rompe cosas:** borrar `salidas/informe_triaje.txt` → error
   específico con pista, aplicar cura, vuelve a verde · meter `SyntaxError`
   en triaje.py (quitar un `:`) → el verificador NO explota: `[ERROR]` de
