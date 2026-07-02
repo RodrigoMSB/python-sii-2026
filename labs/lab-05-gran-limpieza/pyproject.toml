@@ -1,0 +1,16 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 05 — La gran limpieza · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Módulo 3: limpieza y homogeneización de datos sucios con pandas.
+#  Mismas dependencias del Lab 04 (openpyxl solo para exportar el censo
+#  limpio a Excel). Versiones pineadas EXACTAS (reproducibilidad).
+[project]
+name = "lab-05-gran-limpieza"
+version = "1.0.0"
+description = "Lab 05 del curso Python SII 2026 — limpieza del censo de patentes (duplicados, faltantes, outliers)."
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+    "openpyxl==3.1.5",
+]
