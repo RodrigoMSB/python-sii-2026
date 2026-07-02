@@ -1,0 +1,14 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 02 — El cuaderno crece · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Igual que en el Lab 01: entorno aislado con uv, Python 3.13, cero
+#  dependencias externas. Todo el lab corre con la biblioteca estándar.
+#  El entorno sin dependencias no es un descuido: es el mismo hábito
+#  profesional de siempre. Cuando lleguen NumPy y pandas (labs 03+), este
+#  mismo archivo será donde se declaren.
+[project]
+name = "lab-02-cuaderno-crece"
+version = "1.0.0"
+description = "Lab 02 del curso Python SII 2026 — consolidación de patentes del archivador antiguo de la Dirección de Rentas."
+requires-python = "==3.13.*"
+dependencies = []
