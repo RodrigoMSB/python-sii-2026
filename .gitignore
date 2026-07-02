@@ -1,0 +1,24 @@
+# ─── Curso Programación en Python — SII 2026 · Puerto Siracusa ───
+# .gitignore de la raíz del repositorio.
+#
+# Criterio (§9.2 del SPEC-002): ignorar artefactos del ALUMNO y del entorno,
+# SIN ignorar material del curso. Por eso se usan patrones con RUTA (labs/*/…):
+#   - plantillas/triaje.py y soluciones/triaje.py SÍ se versionan.
+#   - uv.lock de cada lab SÍ se versiona (reproducibilidad) → NO se ignora.
+
+# ── Entornos virtuales y caches de Python (en cualquier parte) ──
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# ── Artefactos del ALUMNO (solo en la raíz de cada lab, no en subcarpetas) ──
+# labs/*/  matchea labs/<lab>/archivo, pero NO labs/<lab>/plantillas/archivo
+# ni labs/<lab>/soluciones/archivo, que sí forman parte del curso.
+labs/*/triaje.py
+labs/*/desafio.py
+labs/*/RESPUESTAS.md
+labs/*/salidas/
+
+# ── Ruido del sistema operativo ──
+.DS_Store
