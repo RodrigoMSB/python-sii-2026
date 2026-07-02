@@ -1,0 +1,18 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Lab 01 — El primer día en Rentas · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Este archivo es la "ficha de identidad" del laboratorio para uv.
+#  Fija QUÉ versión de Python usa el lab y QUÉ dependencias necesita.
+#
+#  ¿Por qué un entorno virtual si no instalamos ninguna librería externa?
+#  Porque es el hábito profesional desde el día uno: cada proyecto vive en
+#  su propio "taller aislado", con su propia versión de Python, sin ensuciar
+#  el sistema ni pelear con otros proyectos. Hoy la lista de dependencias
+#  está vacía a propósito; en el Módulo 2 aquí aparecerá pandas y agradecerás
+#  haber aprendido el gesto desde el principio.
+[project]
+name = "lab-01-primer-dia"
+version = "1.0.0"
+description = "Lab 01 del curso Python SII 2026 — triaje de patentes de la Dirección de Rentas de Puerto Siracusa."
+requires-python = "==3.13.*"
+dependencies = []
