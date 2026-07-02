@@ -24,6 +24,28 @@ aprenderás Python paso a paso.
 | 04 | [Las cuatro fuentes](labs/lab-04-cuatro-fuentes/) | Módulo 2 — Archivos (CSV/Excel/JSON) y BD | ✅ Disponible |
 | 05 | [La gran limpieza](labs/lab-05-gran-limpieza/) | Módulo 3 — Limpieza de datos sucios | ✅ Disponible |
 | 06 | [Transformar y combinar](labs/lab-06-transformar-combinar/) | Módulo 3 — merge, agregación y gráficos | ✅ Disponible |
+| 🏖️ | [Capstone — El Arenario](labs/capstone-el-arenario/) | Proyecto integrador (Módulos 1–3) | ✅ Disponible |
+
+**Curso completo: 6 laboratorios + capstone.** 🎓
+
+## El viaje completo
+
+Una sola historia encadenada, lab a lab — la salida de cada uno es la materia prima
+del siguiente:
+
+1. **El primer día en Rentas** — llegas a la oficina y haces el triaje del cuaderno
+   de patentes con Python puro (variables, listas, `for`, `if`).
+2. **El cuaderno crece** — aparece el archivador sucio; nacen los diccionarios, las
+   funciones, las excepciones y el depurador.
+3. **Los números del puerto** — el Concejo quiere estadísticas; entran NumPy y pandas.
+4. **Las cuatro fuentes** — cada oficina habla su dialecto: CSV, Excel, JSON y una
+   base SQLite, con transacciones.
+5. **La gran limpieza** — un practicante fusionó todo en un censo mugriento; lo
+   limpias con criterio y dejas rastro de cada decisión.
+6. **Transformar y combinar** — cruzas el censo con los pagos, agregas y le das al
+   Concejo su tablero con gráfico.
+7. **El Arenario** (capstone) — el Informe Anual: todo junto, un puerto entero
+   contado, con los saldos negativos detectados y explicados. 🏖️
 
 ## Dos rutas, un mismo destino
 

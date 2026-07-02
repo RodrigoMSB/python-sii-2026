@@ -21,8 +21,10 @@ labs/*/panorama.py
 labs/*/fuentes.py
 labs/*/limpiar.py
 labs/*/tablero.py
+labs/*/arenario.py
 labs/*/desafio.py
 labs/*/RESPUESTAS.md
+labs/*/BITACORA.md
 labs/*/salidas/
 
 # ── Ruido del sistema operativo ──
