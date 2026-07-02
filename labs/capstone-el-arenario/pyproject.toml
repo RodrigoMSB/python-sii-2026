@@ -1,0 +1,16 @@
+# ─────────────────────────────────────────────────────────────────────────
+#  Capstone — El Arenario · Curso Python SII 2026 · Puerto Siracusa
+# ─────────────────────────────────────────────────────────────────────────
+#  Proyecto integrador: cuenta Puerto Siracusa entero. Mismas dependencias
+#  del curso, ninguna nueva. Es el examen de madurez del programa.
+[project]
+name = "capstone-el-arenario"
+version = "1.0.0"
+description = "Capstone del curso Python SII 2026 — el Informe Anual de Rentas de Puerto Siracusa."
+requires-python = "==3.13.*"
+dependencies = [
+    "numpy==2.5.0",
+    "pandas==3.0.3",
+    "openpyxl==3.1.5",
+    "matplotlib==3.11.0",
+]

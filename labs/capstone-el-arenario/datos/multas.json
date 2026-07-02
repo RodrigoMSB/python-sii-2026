@@ -1,0 +1,12 @@
+[
+  {"codigo": "PS-1007-T", "motivo": "Operar sin señalética de seguridad", "monto": 25000},
+  {"codigo": "PS-1013-C", "motivo": "Venta fuera de horario autorizado", "monto": 50000},
+  {"codigo": "PS-1003-G", "motivo": "Extractor de aire sin certificar", "monto": 15000},
+  {"codigo": "PS-1022-T", "motivo": "Embarcación sin revisión anual", "monto": 40000},
+  {"codigo": "PS-1029-C", "motivo": "Obstrucción de vía peatonal", "monto": 75000},
+  {"codigo": "PS-1011-T", "motivo": "Publicidad no autorizada en muelle", "monto": 30000},
+  {"codigo": "PS-1024-C", "motivo": "Ruidos sobre norma en horario nocturno", "monto": 20000},
+  {"codigo": "PS-1015-T", "motivo": "Ampliación sin permiso de obra", "monto": 60000},
+  {"codigo": "PS-1009-G", "motivo": "Manipulación de alimentos sin carnet", "monto": 35000},
+  {"codigo": "PS-1036-T", "motivo": "Instalación eléctrica fuera de norma", "monto": 45000}
+]
