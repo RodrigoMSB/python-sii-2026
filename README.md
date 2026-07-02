@@ -23,7 +23,7 @@ aprenderás Python paso a paso.
 | 03 | [Los números del puerto](labs/lab-03-numeros-del-puerto/) | Módulo 2 — NumPy y pandas | ✅ Disponible |
 | 04 | [Las cuatro fuentes](labs/lab-04-cuatro-fuentes/) | Módulo 2 — Archivos (CSV/Excel/JSON) y BD | ✅ Disponible |
 | 05 | [La gran limpieza](labs/lab-05-gran-limpieza/) | Módulo 3 — Limpieza de datos sucios | ✅ Disponible |
-| 06 | Transformar y combinar | Módulo 3 — merge y agregación | 🚧 En construcción |
+| 06 | [Transformar y combinar](labs/lab-06-transformar-combinar/) | Módulo 3 — merge, agregación y gráficos | ✅ Disponible |
 
 ## Dos rutas, un mismo destino
 
