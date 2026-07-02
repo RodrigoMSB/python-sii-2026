@@ -20,7 +20,8 @@ aprenderás Python paso a paso.
 |---|--------|--------|:------:|
 | 01 | [El primer día en Rentas](labs/lab-01-primer-dia/) | Módulo 1 — Fundamentos | ✅ Disponible |
 | 02 | [El cuaderno crece](labs/lab-02-cuaderno-crece/) | Módulo 1 — Estructuras, funciones y excepciones | ✅ Disponible |
-| 03 | Los números del puerto (NumPy) | Módulo 2 — Datos | 🚧 En construcción |
+| 03 | [Los números del puerto](labs/lab-03-numeros-del-puerto/) | Módulo 2 — NumPy y pandas | ✅ Disponible |
+| 04 | Las cuatro fuentes (archivos y BD) | Módulo 2 — Entrada/salida de datos | 🚧 En construcción |
 
 ## Dos rutas, un mismo destino
 

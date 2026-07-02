@@ -17,6 +17,7 @@ __pycache__/
 # ni labs/<lab>/soluciones/archivo, que sí forman parte del curso.
 labs/*/triaje.py
 labs/*/consolidar.py
+labs/*/panorama.py
 labs/*/desafio.py
 labs/*/RESPUESTAS.md
 labs/*/salidas/
