@@ -3,16 +3,20 @@
 > **Proyecto:** Curso Programación en Python — SII 2026 · "Puerto Siracusa"
 > **Emitido por:** El Arquitecto (Claude) · **Aprobado por:** Rodrigo Silva Bravo (PO)
 > **Ejecutor:** mocito (Claude Code) — dueño del repositorio y único constructor
-> **Fecha:** 2026-07-02 · **Versión:** 1.0
+> **Fecha:** 2026-07-02 · **Versión:** 1.1
 > **Dependencias:** repo con tags `lab-01-v1.0.0` y `lab-02-v1.0.0` (SPEC-002/003 completados)
 
-> **⚠️ Nota del ejecutor (mocito) — Hallazgo H-03, pendiente de ratificación del Arquitecto:**
-> El pin `pandas==3.0.4` de este spec resultó estar **YANKED en PyPI** al momento de
-> construir (motivo: "Reported segfaults with datetime-related functionality"). El lab NO
-> usa datetime y funciona idéntico, pero se fijó `pandas==3.0.3` (última 3.0.x estable, misma
-> API moderna) para no emitir a los alumnos una dependencia retirada con warning. `numpy==2.5.0`
-> se mantiene. Detalle en `labs/lab-03-numeros-del-puerto/docs/certificacion-lab-03.md`. El texto
-> del Arquitecto se conserva verbatim más abajo (dice 3.0.4).
+> **Bitácora de enmiendas**
+> - **SPEC-004 v1.1 — Hallazgo H-03 (pin de pandas), ratificado por el Arquitecto**
+>   (2026-07-02): el pin `pandas==3.0.4` (§0, §2, §8.2) resultó estar **YANKED en
+>   PyPI** al construir (motivo: *"Reported segfaults with datetime-related
+>   functionality"*). El lab NO usa datetime y funciona idéntico, pero publicar una
+>   dependencia retirada emitiría a cada alumno un warning alarmante en `uv sync` y
+>   contradice la meta de reproducibilidad. Ratificado el cambio a **`pandas==3.0.3`**
+>   (última 3.0.x no yanked, misma API moderna: str dtype por defecto, CoW).
+>   `numpy==2.5.0` se mantiene. Las menciones a "3.0.4" en el cuerpo se corrigen a
+>   "3.0.3" con marca `[H-03]`. Detalle en
+>   `labs/lab-03-numeros-del-puerto/docs/certificacion-lab-03.md`.
 
 ---
 
@@ -21,7 +25,7 @@
 **Premisas verificadas por el Arquitecto:**
 - ✅ **Versiones a pinear, verificadas contra PyPI el 2026-07-02:**
   `numpy==2.5.0` (liberada 2026-06-21, soporta Python 3.13) y
-  `pandas==3.0.4` (liberada 2026-06-28, serie 3.0 soporta Python ≥3.11).
+  `pandas==3.0.3` (serie 3.0; la 3.0.4 quedó yanked — ver bitácora **[H-03]**).
   **Nota mayor:** pandas 3.0 es la nueva major (2026-01) — trae string dtype
   por defecto y Copy-on-Write activado. El lab enseña la API moderna; nada
   de patrones legacy (`inplace=True` se evita, encadenamiento con CoW en
@@ -70,7 +74,7 @@ por escrito para el Concejo.
 | Carpeta del lab | `labs/lab-03-numeros-del-puerto/` |
 | Duración objetivo | ~2,0 horas (Módulo 2, 1ª mitad; presupuesto: 7 labs / 20 hrs) |
 | Python | 3.13 pineado con `uv` |
-| **Dependencias (NOVEDAD)** | `numpy==2.5.0` · `pandas==3.0.4` — pineadas EXACTAS en `pyproject.toml`, `uv.lock` versionado |
+| **Dependencias (NOVEDAD)** | `numpy==2.5.0` · `pandas==3.0.3` **[H-03]** — pineadas EXACTAS en `pyproject.toml`, `uv.lock` versionado |
 | Tag al certificar | `lab-03-v1.0.0` |
 
 ## 3. Estructura del lab
@@ -214,7 +218,7 @@ preparadores deben avisarlo (`[INFO] Descargando las bibliotecas del lab
 ### 8.2 `bin/verificar_entorno.py`
 Checks del Lab 01 **+** verificación tolerante de bibliotecas: intentar
 `import numpy` / `import pandas` y comparar `__version__` contra las
-pineadas (2.5.0 / 3.0.4). Si el import falla → `[ERROR]` con pista de
+pineadas (2.5.0 / 3.0.3 **[H-03]**). Si el import falla → `[ERROR]` con pista de
 correr el preparador (no traceback crudo). Versión distinta → `[ERROR]`
 con pista `uv sync`.
 

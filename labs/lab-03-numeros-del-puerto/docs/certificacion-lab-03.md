@@ -39,7 +39,12 @@ simplemente no llega a romper nada porque uv lo repara solo.
 
 ## Hallazgos
 
-### H-03 — `pandas==3.0.4` (dato duro del spec) está YANKED en PyPI *(ABIERTO — requiere ratificación del Arquitecto)*
+### H-03 — `pandas==3.0.4` (dato duro del spec) estaba YANKED en PyPI *(RESUELTO — ratificado por el Arquitecto, SPEC-004 v1.1)*
+
+> **Resolución (2026-07-02):** el Arquitecto ratificó el cambio a `pandas==3.0.3`.
+> `specs/SPEC-004.md` se enmendó a **v1.1** (bitácora de enmiendas) corrigiendo el
+> pin en §0/§2/§8.2. El lab quedó certificado con `pandas==3.0.3` y el tag
+> `lab-03-v1.0.0` se liberó. El detalle técnico original se conserva abajo.
 
 - **Síntoma:** al fijar `pandas==3.0.4` (§2/§0 del SPEC-004, "verificada contra
   PyPI"), `uv sync` advierte:
@@ -62,10 +67,10 @@ simplemente no llega a romper nada porque uv lo repara solo.
 
 ## Veredicto final
 
-**CERTIFICADO CON OBSERVACIÓN (H-03).**
+**CERTIFICADO.**
 
 Los 9 escenarios (E01–E09) cumplen íntegros y los Labs 01–02 siguen certificados.
-La única observación abierta es H-03: la sustitución del pin `pandas==3.0.4`
-(yanked) por `3.0.3`, que cambia un "dato duro" del spec y por eso queda a
-ratificación del Arquitecto/PO antes de crear el tag `lab-03-v1.0.0`. Con la
-ratificación, se enmienda el spec (v1.1) y se libera el tag.
+La única observación (H-03: sustitución del pin `pandas==3.0.4` yanked por `3.0.3`)
+fue **ratificada por el Arquitecto** y quedó cerrada: `specs/SPEC-004.md` se
+enmendó a **v1.1** y se liberó el tag `lab-03-v1.0.0`. Sin observaciones
+pendientes.
