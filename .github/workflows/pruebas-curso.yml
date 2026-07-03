@@ -20,6 +20,13 @@ concurrency:
 permissions:
   contents: read
 
+# UTF-8 en todos los procesos Python del runner (harness, verificadores y los
+# programas del alumno). En Windows, cuando stdout es un pipe (como en CI), el
+# encoding por defecto es cp1252 y los símbolos del curso (✔, ═, →, emojis)
+# revientan con UnicodeEncodeError. PYTHONUTF8=1 lo resuelve de raíz (Hallazgo H-06).
+env:
+  PYTHONUTF8: "1"
+
 jobs:
   pruebas:
     name: Suite en ${{ matrix.os }}

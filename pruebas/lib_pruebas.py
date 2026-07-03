@@ -22,6 +22,14 @@ import tempfile
 import time
 from pathlib import Path
 
+# Windows / stdout no-consola (CI): fuerza UTF-8 para que los símbolos (✔, ═,
+# emojis) no revienten con UnicodeEncodeError sobre un pipe cp1252 (P2).
+for _flujo in (sys.stdout, sys.stderr):
+    try:
+        _flujo.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):  # pragma: no cover
+        pass
+
 RAIZ_REPO = Path(__file__).resolve().parent.parent
 REPORTES = RAIZ_REPO / "pruebas" / "_reportes"
 MARCADOR = "(escribe aquí tu respuesta)"

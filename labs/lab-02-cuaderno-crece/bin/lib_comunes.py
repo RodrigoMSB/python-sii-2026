@@ -14,6 +14,15 @@ from __future__ import annotations
 import os
 import sys
 
+# Windows / stdout no-consola: fuerza UTF-8 en la salida para que los símbolos del
+# curso (✔, ✘, ═, emojis) no revienten con UnicodeEncodeError cuando stdout es un
+# pipe o una consola cp1252 (CI, redirección). errors="replace" como red de seguridad.
+for _flujo in (sys.stdout, sys.stderr):
+    try:
+        _flujo.reconfigure(encoding="utf-8", errors="replace")
+    except (AttributeError, ValueError):  # pragma: no cover - stream sin reconfigure
+        pass
+
 # ─────────────────────────────────────────────────────────────────────────
 #  Colores ANSI, con degradación limpia
 # ─────────────────────────────────────────────────────────────────────────
