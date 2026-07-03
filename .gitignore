@@ -27,5 +27,8 @@ labs/*/RESPUESTAS.md
 labs/*/BITACORA.md
 labs/*/salidas/
 
+# ── Reportes de la suite de pruebas (artefactos de CI) ──
+pruebas/_reportes/
+
 # ── Ruido del sistema operativo ──
 .DS_Store
