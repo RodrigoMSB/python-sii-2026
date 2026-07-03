@@ -43,12 +43,17 @@ def generar_xlsx():
 def generar_db():
     if RUTA_DB.exists():
         RUTA_DB.unlink()
-    with sqlite3.connect(RUTA_DB) as con:
+    # C11: `with sqlite3.connect(...)` es transaccional, NO cierra la conexión
+    # (queda prohibido como mecanismo de cierre en todo el curso; ver H-07).
+    con = sqlite3.connect(RUTA_DB)
+    try:
         con.execute("CREATE TABLE contribuyentes ("
                     "codigo TEXT PRIMARY KEY, nombre TEXT NOT NULL, giro TEXT NOT NULL)")
         con.executemany("INSERT INTO contribuyentes (codigo, nombre, giro) VALUES (?, ?, ?)",
                         CONTRIBUYENTES_BD)
         con.commit()
+    finally:
+        con.close()
 
 
 def main() -> int:

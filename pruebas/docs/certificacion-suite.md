@@ -3,8 +3,9 @@
 > **Proyecto:** Curso Programación en Python — SII 2026 · "Puerto Siracusa"
 > **Constructor:** mocito (Claude Code) · **Aprobación pendiente:** Rodrigo Silva Bravo (PO)
 > **Fecha:** 2026-07-03 · **Base:** `curso-v1.0.0` (7 unidades certificadas)
-> **Estado:** ✅ CERTIFICADO técnicamente · ⏸️ **tag `pruebas-v1.0.0` EN ESPERA** de
-> ratificación del PO (dos hallazgos tocaron labs certificados).
+> **Estado:** ✅ **CERTIFICADO y RATIFICADO por el PO** — H-06 y H-07 ratificados con sus
+> fixes; SPEC-009 enmendada a v1.1 (§10); doctrina **C19** y aclaración **C11** vigentes;
+> tag `pruebas-v1.0.0` creado.
 
 ---
 
@@ -128,9 +129,11 @@ ya ejercieron el camino de fallo + artifact + identificación del lab.
 - [x] Badge en la portada.
 - [x] M01–M07 certificadas.
 - [x] Commits pusheados (`feat:` suite, `feat:` CI, `docs:` spec, dos `fix:` de hallazgos).
-- [x] Hallazgos reportados (H-06, H-07).
-- [ ] **Tag `pruebas-v1.0.0`** — ⏸️ retenido a la espera de la **ratificación del PO**
-      de H-06 y H-07 (ambos tocan labs certificados; precedente H-01/H-03/H-04).
+- [x] Hallazgos reportados (H-06, H-07) y **ratificados por el PO**; SPEC-009 → v1.1 (§10);
+      doctrina **C19** (UTF-8 en toda infraestructura) y **C11** ampliada (`with
+      sqlite3.connect()` proscrito como cierre en todo el curso; se corrigió además el
+      mismo patrón en `generar_fuentes.py` de Lab 04 y capstone).
+- [x] **Tag `pruebas-v1.0.0`** creado y pusheado.
 
 ---
 

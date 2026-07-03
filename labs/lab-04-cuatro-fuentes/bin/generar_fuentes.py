@@ -73,7 +73,10 @@ def generar_json():
 def generar_db():
     if RUTA_DB.exists():
         RUTA_DB.unlink()  # regeneración desde cero
-    with sqlite3.connect(RUTA_DB) as con:
+    # C11: `with sqlite3.connect(...)` es transaccional, NO cierra la conexión
+    # (queda prohibido como mecanismo de cierre en todo el curso; ver H-07).
+    con = sqlite3.connect(RUTA_DB)
+    try:
         con.execute(
             "CREATE TABLE contribuyentes ("
             "codigo TEXT PRIMARY KEY, nombre TEXT NOT NULL, giro TEXT NOT NULL)"
@@ -83,6 +86,8 @@ def generar_db():
             CONTRIBUYENTES_BD,
         )
         con.commit()
+    finally:
+        con.close()
 
 
 def main() -> int:
