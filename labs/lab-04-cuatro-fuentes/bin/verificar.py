@@ -67,10 +67,17 @@ def _fuentes_sorpresa(tmp):
         r_xlsx, sheet_name="Permisos", index=False)
     with r_json.open("w", encoding="utf-8") as f:
         json.dump([{"codigo": c, "motivo": m, "monto": v} for c, m, v in multas], f, ensure_ascii=False)
-    with sqlite3.connect(r_db) as con:
+    # OJO: `with sqlite3.connect(...)` es un context manager TRANSACCIONAL, no cierra
+    # la conexión. En POSIX da igual (se puede borrar un archivo abierto), pero en
+    # Windows el handle abierto sobre c.db hace fallar la limpieza del TemporaryDirectory
+    # con WinError 32 (Hallazgo H-07). Cerramos a mano, como exige el propio C11 del lab.
+    con = sqlite3.connect(r_db)
+    try:
         con.execute("CREATE TABLE contribuyentes (codigo TEXT PRIMARY KEY, nombre TEXT, giro TEXT)")
         con.executemany("INSERT INTO contribuyentes VALUES (?,?,?)", contrib)
         con.commit()
+    finally:
+        con.close()
 
     ref = {
         "shapes": {"pagos": (npag, 3), "permisos": (nper, 3), "multas": (nmul, 3)},
