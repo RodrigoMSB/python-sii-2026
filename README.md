@@ -1,8 +1,13 @@
 # Curso Programación en Python — SII 2026 · Puerto Siracusa
 
+[![Pruebas del curso](https://github.com/RodrigoMSB/python-sii-2026/actions/workflows/pruebas-curso.yml/badge.svg)](https://github.com/RodrigoMSB/python-sii-2026/actions/workflows/pruebas-curso.yml)
+
 > Curso de Python de 20 horas para funcionarios, **sin experiencia previa en
 > programación**. Se aprende por laboratorios con narrativa continua: no estudias
 > Python en abstracto, resuelves los encargos que te pone tu jefe.
+>
+> 🚦 El semáforo de arriba corre el flujo de las 7 unidades en **macOS y Windows
+> reales** (ver [`pruebas/`](pruebas/)).
 
 ## La historia
 

@@ -1,0 +1,52 @@
+# Suite de Pruebas del Curso — CI multiplataforma (macOS + Windows)
+# Corre el flujo feliz del alumno de las 7 unidades en runners reales.
+# "No se dice 'debería funcionar en Windows'. Se muestra el semáforo en verde."
+name: Pruebas del curso
+
+on:
+  workflow_dispatch:            # botón manual — el disparador principal (Windows cuesta 2×)
+  push:
+    branches: [main]
+    paths:                      # solo cuando cambia algo que las pruebas cubren
+      - "labs/**"
+      - "pruebas/**"
+      - ".github/workflows/pruebas-curso.yml"
+
+# Cancela corridas viejas de la misma rama para no gastar minutos de más.
+concurrency:
+  group: pruebas-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  pruebas:
+    name: Suite en ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false          # queremos VER ambos veredictos aunque uno falle
+      matrix:
+        os: [macos-latest, windows-latest]
+    steps:
+      # Acciones pineadas por HASH inmutable (doctrina H-03: anti supply-chain)
+      - name: Checkout
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0  # v7.0.0
+
+      - name: Instalar uv (con caché) y Python 3.13
+        uses: astral-sh/setup-uv@08807647e7069bb48b6ef5acd8ec9567f424441b  # v8.1.0
+        with:
+          enable-cache: true
+          python-version: "3.13"
+
+      - name: Correr la suite del curso
+        run: uv run --no-project python pruebas/probar_curso.py
+
+      - name: Subir reportes si algo falló
+        if: failure()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a  # v7.0.1
+        with:
+          name: reportes-${{ matrix.os }}
+          path: pruebas/_reportes/
+          if-no-files-found: ignore
+          retention-days: 7
