@@ -42,8 +42,11 @@ uv --version
 **Salida esperada (el número puede variar):**
 
 ```
-uv 0.9.x (...)
+uv 0.11.x (...)
 ```
+
+Necesitas **uv 0.11 o superior**. Si `uv --version` muestra algo menor, actualiza
+con el mismo comando de instalación de arriba (es idempotente: lo deja al día).
 
 Si ves una versión, ¡listo! Ya puedes entrar al primer laboratorio:
 
