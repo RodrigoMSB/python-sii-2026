@@ -45,9 +45,13 @@ de la Guía 1, no un error.
 ### `sqlite3.OperationalError: database is locked`
 
 Quedó una conexión abierta (un REPL o script colgado sujetando la BD). **Cura:**
-cierra ese REPL/terminal, o asegúrate de llamar `con.close()` (o usar
-`with sqlite3.connect(...)`). El contrato C11 existe justo por esto: nunca dejes
-una conexión abierta.
+cierra ese REPL/terminal y, en tu código, **cierra siempre la conexión con
+`con.close()` dentro de un `try/finally`** (así lo hacen las soluciones del curso).
+⚠️ **Ojo Windows (C11 / H-07):** NO uses `with sqlite3.connect(...)` como forma de
+cierre — el gestor de contexto hace *commit* pero **no cierra el handle**, y en
+Windows eso deja el archivo `.db` tomado y provoca
+`PermissionError: [WinError 32]` al reintentar. El contrato C11 existe justo por
+esto: cierra explícitamente, nunca dejes una conexión abierta.
 
 ### 🪟 No puedo re-ejecutar: el `.xlsx` está "en uso"
 
