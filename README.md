@@ -72,5 +72,5 @@ Cada lab se recorre de dos formas, y ambas terminan en el mismo verificador:
 
 ## Aviso
 
-📕 **Repositorio privado. Material del curso — no redistribuir.** De uso exclusivo
-para participantes del curso Python SII 2026.
+📗 **Material del curso Python SII 2026 · Puerto Siracusa.** Repositorio público de
+uso educativo para los participantes del curso.

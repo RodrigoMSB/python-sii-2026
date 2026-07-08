@@ -5,9 +5,9 @@
 > (runbook de campo del SPEC-013). Mientras las casillas digan PENDIENTE, **el curso
 > NO está certificado en Windows**. mocito vuelca aquí las capturas/transcripciones.
 
-> ⚠️ **Dependencia de plataforma:** el modelo de entrega validado es **repo público**
-> (Fase 1 = instalar Git + `git clone`, sin login ni zip). A la fecha, el repositorio
-> figura **PRIVADO** — la Fase 1 no puede certificarse hasta que sea público.
+> ✅ **Modelo de entrega:** **repo público** (Fase 1 = instalar Git + `git clone`, sin
+> login ni zip). El repositorio ya es **PÚBLICO** — la Fase 1 queda desbloqueada para
+> validación en Windows real.
 
 ## Plataformas
 
