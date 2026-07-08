@@ -15,7 +15,8 @@ Lee primero el encargo completo: **[escenario/ESCENARIO.md](escenario/ESCENARIO.
 
 ## Cómo se trabaja
 
-1. Prepara el entorno: `bash bin/00-preparar.sh` (Windows: el `.ps1`). Meta `✔ 12/12`.
+1. Prepara el entorno: `bash bin/00-preparar.sh` — en Windows:
+   `powershell -ExecutionPolicy Bypass -File bin\00-preparar.ps1`. Meta `✔ 12/12`.
 2. Lee `escenario/ESCENARIO.md` (el encargo y los 6 entregables).
 3. Escribe tu solución **con estructura libre** en la raíz (un `arenario.py` o los
    módulos que quieras). Nadie te dice cómo; el verificador mide los **productos**.
