@@ -134,6 +134,41 @@ globales**: pasa lo que necesitas como parámetro y devuelve el resultado.
 1000
 ```
 
+### ¿Y cómo se le pide "explícitamente"? La palabra `global`
+
+Existe la forma de escribir en el escritorio de afuera. Se llama `global` y hay
+que **declararla**:
+
+```python
+>>> total = 0
+>>> def acumular_global(monto):
+...     global total          # ← "voy a escribir en la de afuera"
+...     total = total + monto
+...     return total
+...
+>>> acumular_global(1000)
+1000
+>>> acumular_global(500)
+1500
+>>> total                     # la de afuera CAMBIÓ
+1500
+```
+
+Ahora sí funciona… y ahí está el peligro. `global` convierte una variable en algo
+que **cualquier función puede cambiar desde cualquier parte**. Cuando `total` salga
+mal, tendrás que revisar el programa entero para saber quién la tocó.
+
+> 🏛️ **Analogía: la pizarra del pasillo.** Un parámetro es un papel que le pasas a
+> un funcionario: sabes qué recibió y qué devolvió. Una variable `global` es una
+> pizarra en el pasillo donde **todos** pueden borrar y escribir. Cuando el número
+> aparezca mal, nadie sabrá quién fue.
+
+> ⛔ **Regla del curso:** conoces `global` para **reconocerlo** en código ajeno —
+> lo verás mucho—, pero en este curso **no lo usarás**. La forma limpia es la de
+> arriba: recibe por parámetro, devuelve el resultado. Una función que solo depende
+> de lo que recibe es una función que puedes probar sola… y entender sin leer el
+> resto del programa.
+
 ## ✅ Checkpoint
 
 - [ ] Definiste funciones con `return` y con un parámetro por defecto.
