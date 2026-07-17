@@ -23,9 +23,9 @@ vez**, sin bucles:
 ```python
 >>> df["estado"].value_counts()
 estado
-VIGENTE       10
-VENCIDA       10
-SUSPENDIDA     3
+VENCIDA       14
+VIGENTE       11
+SUSPENDIDA     5
 Name: count, dtype: int64
 ```
 
