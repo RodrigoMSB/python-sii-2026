@@ -22,7 +22,7 @@ de vuelta en los cuatro formatos.
 Lectura con pandas: `read_csv` (y sus perillas `sep`/`decimal`/`thousands`),
 `read_excel` (`sheet_name`, motor openpyxl), JSON por dos caminos (`json.load`
 stdlib vs `pd.read_json`), `sqlite3` + `pd.read_sql` · **transacciones**:
-`commit`, `rollback`, `IntegrityError`, patrón `with` · **exportación**:
+`commit`, `rollback`, `IntegrityError`, `with con:` transaccional y cierre explícito (C11) · **exportación**:
 `to_csv`/`to_excel`/`to_json`/`to_sql`.
 
 ## Dos rutas, un mismo verificador

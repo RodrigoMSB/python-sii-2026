@@ -78,8 +78,11 @@ ls salidas/
 - `gestion.db` → consúltalo con SQLite:
   ```python
   >>> import sqlite3
-  >>> with sqlite3.connect("salidas/gestion.db") as con:
+  >>> con = sqlite3.connect("salidas/gestion.db")
+  >>> try:
   ...     print(con.execute("SELECT * FROM resumen_mensual").fetchall())
+  ... finally:
+  ...     con.close()          # C11: siempre explícito (ver Guía 4)
   ...
   [('pagos', 677500), ('permisos', 1000000), ('multas', 395000), ('total', 2072500)]
   ```

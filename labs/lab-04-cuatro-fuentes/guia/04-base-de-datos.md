@@ -39,9 +39,10 @@ Y el puente a pandas es directo con `pd.read_sql`:
 (10, 3)
 ```
 
-> 🔌 **Cierra siempre la conexión** (contrato C11). Una conexión abierta puede
-> dejar la BD "bloqueada". Por eso más abajo verás el patrón `with`, que la
-> cierra sola.
+> 🔌 **Cierra siempre la conexión** (contrato C11). Una conexión abierta deja la
+> BD "tomada" — y en Windows, el próximo intento de escribir el archivo falla con
+> `PermissionError: [WinError 32]`. Más abajo verás el patrón profesional… y una
+> trampa muy famosa que **parece** cerrarla y no lo hace.
 
 ## El tema estrella: transacciones
 
@@ -114,16 +115,58 @@ Rechazado: UNIQUE constraint failed: contribuyentes.codigo
 dejamos todo como estaba, sin medias boletas. Esta es exactamente la lógica de
 tu función `registrar_pago`: valida, y si algo no cuadra, **rollback y afuera**.
 
-## El patrón `with` (cierre automático)
+## 💥 Rómpelo: la trampa del `with` (el error que parece correcto)
 
-Para no olvidar el `close()`, usa la conexión como context manager:
+Este es el error más peligroso del lab, porque **no lanza excepción**: parece que
+funciona. Muchísimo código (y muchísimos tutoriales) escriben esto creyendo que
+cierra la conexión:
 
 ```python
 >>> with sqlite3.connect("salidas/practica.db") as con:
 ...     con.execute("INSERT INTO pagos VALUES ('PS-1017-G', 76000)")
-...     # al salir del bloque with, se hace commit y se cierra solo
 ...
 ```
+
+Suena lógico: "el `with` abre y cierra solo". **Pero es falso.** Compruébalo tú
+mismo, ahora, en tu terminal:
+
+```python
+>>> con.execute("SELECT COUNT(*) FROM pagos").fetchone()
+```
+
+**Salida esperada:** ¡funciona y te devuelve un número! Si la conexión estuviera
+cerrada, esto lanzaría `ProgrammingError: Cannot operate on a closed database`.
+No lo lanza: **la conexión sigue viva**.
+
+Lo que hace `with sqlite3.connect(...)` es **commit al salir del bloque**, no
+`close()`. Es un context manager **transaccional**, no de conexión. Y una
+conexión viva mantiene el `.db` tomado: en Windows, el próximo intento de
+reescribir ese archivo revienta con `PermissionError: [WinError 32]`.
+
+> ⛔ **Contrato C11 (doctrina del curso):** `with sqlite3.connect(...)` está
+> **prohibido** en este curso. Nunca confundas "se hizo commit" con "se cerró".
+
+### El patrón profesional (el que usarás)
+
+Se pueden tener las dos cosas — transacción automática **y** cierre garantizado:
+
+```python
+>>> con = sqlite3.connect("salidas/practica.db")
+>>> try:
+...     with con:                  # ✅ transacción: commit al salir, rollback si falla
+...         con.execute("INSERT INTO pagos VALUES ('PS-1017-G', 76000)")
+... finally:
+...     con.close()                # ✅ C11: el cierre, SIEMPRE explícito
+...
+```
+
+Léelo así: el `with con:` administra **el trámite** (timbra o anula); el
+`finally: con.close()` **cierra la caja**. Son dos responsabilidades distintas y
+cada una tiene su herramienta. Así lo hacen las soluciones del curso — ábrelas y
+compruébalo.
+
+> 📝 **Alimenta la Pregunta 1:** además del commit, anota qué te devolvió el
+> `SELECT` después del bloque `with` y qué te dice eso sobre la conexión.
 
 ### 🤖 Pregúntale a la IA
 
@@ -136,6 +179,7 @@ Para no olvidar el `close()`, usa la conexión como context manager:
 - [ ] Demo 1: la fila SIN commit **no** estaba al reabrir (Pregunta 1).
 - [ ] Demo 2: con `commit`, la fila persistió.
 - [ ] Demo 3: un duplicado lanzó `IntegrityError` y lo manejaste con `rollback`.
-- [ ] Usaste el patrón `with sqlite3.connect(...)`.
+- [ ] Comprobaste la trampa: tras `with sqlite3.connect(...)` la conexión SIGUE
+      viva (C11), y usaste el patrón correcto `try: with con: … finally: con.close()`.
 
 Cuando esté todo ✔, sigue con **[Guía 5 — El consolidado](05-consolidado.md)**.
