@@ -113,6 +113,12 @@ merge sin `how` explícito y sin `validate` es un merge que nadie revisó — y 
 merges mal hechos duplican filas en silencio. Por eso agrupamos primero (1 fila por
 código) y recién ahí unimos (C17).
 
+### 🤖 Pregúntale a la IA
+
+> *"En pandas, ¿qué diferencia hay entre `how='left'`, `'inner'`, `'outer'` y
+> `'right'` en un merge? Explícamelo con la analogía de carpetas y boletas, y
+> dime en qué caso cada uno pierde información sin avisar."*
+
 ## ✅ Checkpoint
 
 - [ ] Apilaste junio+julio con `concat` (20 filas, `ignore_index`).

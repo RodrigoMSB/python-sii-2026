@@ -103,6 +103,12 @@ Turismo         1120000   409000        0
 **crosstab vs pivot_table:** crosstab **cuenta** (¿cuántas?); pivot_table **agrega
 un valor** (¿cuánta deuda?). Misma forma de cuadro, distinta pregunta.
 
+### 🤖 Pregúntale a la IA
+
+> *"En pandas, ¿cuándo uso `groupby().agg()` y cuándo `groupby().transform()`?
+> Explícame por qué transform devuelve una serie del mismo largo que el DataFrame
+> y agg no, con un ejemplo de calcular el % de cada fila dentro de su grupo."*
+
 ## ✅ Checkpoint
 
 - [ ] Sacaste totales por rubro con `groupby().sum()` (3 filas).

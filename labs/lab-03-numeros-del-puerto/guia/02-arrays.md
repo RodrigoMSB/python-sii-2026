@@ -128,6 +128,12 @@ IndexError: index 12 is out of bounds for axis 0 with size 12
 el 12. Otra vez el clásico de contar desde 0: hay 12 meses, pero el último es el
 índice **11**.
 
+### 🤖 Pregúntale a la IA
+
+> *"En NumPy, ¿por qué `arr.sum(axis=0)` suma las columnas y no las filas, si el
+> eje 0 son las filas? Explícamelo con la idea de que axis es el eje que se
+> colapsa, y dame un ejemplo con una matriz de 3×4."*
+
 ## ✅ Checkpoint
 
 - [ ] Creaste la matriz y consultaste `shape`, `dtype`, `ndim`.

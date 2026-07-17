@@ -116,6 +116,12 @@ array(['OK', 'OK', 'OK', 'OK', 'OK', 'FLOJO', 'FLOJO', 'OK', 'OK',
        'OK', 'OK', 'OK'], dtype='<U5')
 ```
 
+### 🤖 Pregúntale a la IA
+
+> *"En NumPy, ¿qué reglas exactas sigue el broadcasting para decidir si dos arrays
+> de formas distintas se pueden operar? Dame un caso que funciona y uno que lanza
+> ValueError, con la explicación de por qué."*
+
 ## ✅ Checkpoint
 
 - [ ] Aplicaste el reajuste con `m * 1.04` (broadcasting, sin bucle).
