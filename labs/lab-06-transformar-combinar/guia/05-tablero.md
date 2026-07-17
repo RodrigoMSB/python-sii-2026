@@ -17,6 +17,8 @@ ax.bar(["Comercio", "Gastronomía", "Turismo"], [601000, 99000, 1325000])
 ax.set_title("Saldo por rubro — Puerto Siracusa")
 ax.set_xlabel("Rubro"); ax.set_ylabel("Saldo pendiente (CLP)")
 fig.tight_layout()               # que no se corten las etiquetas
+from pathlib import Path
+Path("salidas").mkdir(exist_ok=True)   # la carpeta puede no existir aún
 fig.savefig("salidas/saldo_por_rubro.png", dpi=150)
 plt.close(fig)                    # cerrar SIEMPRE
 ```

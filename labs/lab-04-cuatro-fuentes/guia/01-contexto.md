@@ -80,7 +80,8 @@ head -c 200 datos/fuentes/permisos_eventos.xlsx    # 🍎/🐧
 head -c 200 datos/fuentes/contribuyentes.db
 ```
 ```powershell
-Get-Content datos\fuentes\permisos_eventos.xlsx -TotalCount 1   # 🪟
+# 🪟 equivalente a head -c 200: los primeros 200 bytes
+[System.Text.Encoding]::ASCII.GetString([System.IO.File]::ReadAllBytes("datos\fuentes\permisos_eventos.xlsx")[0..199])
 ```
 Verás **basura**: símbolos raros, `PK...`, bytes ilegibles. No está roto: es que
 un `.xlsx` es en realidad un **ZIP** de XML, y un `.db` es un formato **binario**
