@@ -85,7 +85,12 @@ El JSON es estricto con su sintaxis. Vamos a romperlo **en una copia** (jamás l
 fuente original):
 
 ```bash
+mkdir -p salidas                                       # 🍎/🐧 (aún no existe)
 cp datos/fuentes/multas.json salidas/multas_roto.json
+```
+```powershell
+New-Item -ItemType Directory -Force salidas | Out-Null  # 🪟
+Copy-Item datos\fuentes\multas.json salidas\multas_roto.json
 ```
 Abre `salidas/multas_roto.json` y **agrega una coma** después del último objeto,
 justo antes del `]` de cierre (una coma "colgante"). Guárdalo e intenta leerlo:
