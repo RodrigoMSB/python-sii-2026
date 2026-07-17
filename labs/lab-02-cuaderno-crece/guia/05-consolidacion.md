@@ -10,6 +10,12 @@
 El `for` recorre una colección entera. El `while` repite **mientras** una
 condición sea verdadera, y a veces quieres **parar antes** con `break`:
 
+> 🔍 **Método nuevo:** `.isdigit()` es un método de las cadenas que responde
+> `True` si el texto está formado **solo por dígitos** (`"200000".isdigit()` →
+> `True`; `"200.000".isdigit()` → `False`, por el punto). Por eso primero se
+> limpian los puntos con `.replace(".", "")` y recién después se pregunta si lo
+> que queda es un número.
+
 ```python
 >>> from datos.archivador import REGISTROS_BRUTOS
 >>> i = 0
@@ -54,6 +60,23 @@ Se lee: *"`r["codigo"]` por cada `r` en los registros"*. Y admite filtro con `if
 
 > ✋ **Regla de estilo:** si la comprensión no cabe **legible en una línea**, usa
 > un `for` normal. La comprensión es para simplificar, no para lucirse.
+
+### Y con llaves: la comprensión de **set**
+
+Si cambias los corchetes `[...]` por llaves `{...}`, obtienes un **set** — o sea,
+la misma comprensión pero **sin repetidos**:
+
+```python
+>>> len([r["codigo"] for r in REGISTROS_BRUTOS])   # lista: los 18, con el repetido
+18
+>>> len({r["codigo"] for r in REGISTROS_BRUTOS})   # set: solo los únicos
+17
+```
+
+Es exactamente la línea que viste en la **Guía 1** y te prometí explicar aquí:
+`{r["codigo"] for r in REGISTROS_BRUTOS}` recorre los registros, saca el código de
+cada uno y **descarta los repetidos** en un solo gesto (18 → 17: `PS-1026-C`
+estaba dos veces).
 
 ## Elige tu ruta
 

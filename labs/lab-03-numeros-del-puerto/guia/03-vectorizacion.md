@@ -49,6 +49,11 @@ recaudó menos que el umbral?".
 Antes de usar la máscara para sacar los nombres, **predice**: ¿qué meses crees
 que quedarán por debajo de $6.500.000? Anótalo. Luego:
 
+> 🔍 **Función nueva:** `enumerate(secuencia)` entrega, en cada vuelta, **la
+> posición y el valor** a la vez: `for i, valor in enumerate(["a","b"])` da
+> `(0,"a")` y luego `(1,"b")`. Aquí sirve para saber **en qué mes** (la posición)
+> se cumplió la condición.
+
 ```python
 >>> from datos.recaudacion import MESES
 >>> [MESES[i] for i, bajo in enumerate(por_mes < 6_500_000) if bajo]
