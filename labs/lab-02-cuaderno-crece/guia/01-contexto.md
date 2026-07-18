@@ -40,7 +40,7 @@ powershell -ExecutionPolicy Bypass -File bin\00-preparar.ps1
 ✔ 5/5 verificaciones correctas
 ```
 
-Abre el REPL para acompañar la guía: `uv run python`.
+Abre el REPL para acompañar la guía: `bash bin/repl.sh`.
 
 ## Tuplas: como una lista, pero timbrada
 

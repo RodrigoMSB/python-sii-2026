@@ -3,7 +3,7 @@
 > **Objetivo:** manejar la matriz de recaudación: crearla, medirla, cortarla y
 > sacarle totales por eje.
 
-REPL abierto (`uv run python`), con `import numpy as np`.
+REPL abierto (`bash bin/repl.sh`), con `import numpy as np`.
 
 ## De lista de listas a matriz
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────
-#  Preparador del Lab 04 (macOS / Linux)
+#  Preparador del Lab 04 (macOS / Linux / Windows con Git Bash)
 #  Uso, desde la raíz del lab:   bash bin/00-preparar.sh
 #
 #  Monta el taller: comprueba uv, crea/sincroniza el entorno con Python 3.13

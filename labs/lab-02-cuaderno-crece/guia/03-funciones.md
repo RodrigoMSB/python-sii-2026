@@ -4,7 +4,7 @@
 > **herramientas** reutilizables. El triaje se hace cada semana; una función se
 > escribe una vez y se usa siempre.
 
-REPL abierto (`uv run python`).
+REPL abierto (`bash bin/repl.sh`).
 
 ## `def`: una herramienta con nombre
 

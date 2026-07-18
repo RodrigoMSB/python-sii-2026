@@ -4,7 +4,7 @@
 > un dolor concreto: buscar rápido y guardar datos con nombre en vez de por
 > posición.
 
-Ten el REPL abierto (`uv run python`).
+Ten el REPL abierto (`bash bin/repl.sh`).
 
 ## El dolor: buscar en una lista de listas
 

@@ -3,7 +3,7 @@
 > **Objetivo:** leer la tercera fuente por sus **dos caminos** (stdlib y pandas)
 > y entender cuándo conviene cada uno.
 
-REPL abierto (`uv run python`).
+REPL abierto (`bash bin/repl.sh`).
 
 ## Anatomía de un JSON
 

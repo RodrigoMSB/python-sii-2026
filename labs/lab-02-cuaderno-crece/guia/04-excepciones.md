@@ -3,7 +3,7 @@
 > **Objetivo:** que un dato sucio NO bote todo el programa. Aprenderás a atrapar
 > errores, a distinguirlos y a crear el tuyo propio: `RegistroInvalido`.
 
-REPL abierto (`uv run python`).
+REPL abierto (`bash bin/repl.sh`).
 
 ## El problema: la transcripción sucia
 

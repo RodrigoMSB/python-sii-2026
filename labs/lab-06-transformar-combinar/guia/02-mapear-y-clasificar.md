@@ -3,7 +3,7 @@
 > **Objetivo:** transformar columnas para que digan algo: la letra del código →
 > nombre del rubro, el monto → tramo de deuda, el estado → columnas de sí/no.
 
-REPL abierto (`uv run python`), con el censo cargado.
+REPL abierto (`bash bin/repl.sh`), con el censo cargado.
 
 ## `map`: el timbre traductor
 

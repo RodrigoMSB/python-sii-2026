@@ -4,7 +4,7 @@
 > módulo: **las transacciones** (commit y rollback). Aquí se cura el miedo del
 > municipio a la base de datos.
 
-REPL abierto (`uv run python`). Trabajaremos SIEMPRE sobre una **copia** en
+REPL abierto (`bash bin/repl.sh`). Trabajaremos SIEMPRE sobre una **copia** en
 `salidas/`, nunca sobre la fuente original:
 
 ```python

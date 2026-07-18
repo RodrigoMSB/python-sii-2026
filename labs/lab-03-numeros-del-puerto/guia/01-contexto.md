@@ -49,7 +49,7 @@ o antivirus? Revisa [`../docs/troubleshooting.md`](../docs/troubleshooting.md).
 
 ## ¿Por qué NumPy? La demo que lo explica todo
 
-Abre el REPL: `uv run python`. Trae la planilla y suma el total de **cada mes**,
+Abre el REPL: `bash bin/repl.sh`. Trae la planilla y suma el total de **cada mes**,
 primero a la antigua (con bucle) y luego a la NumPy:
 
 ```python

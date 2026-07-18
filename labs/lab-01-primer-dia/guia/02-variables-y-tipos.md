@@ -3,7 +3,7 @@
 > **Objetivo:** guardar datos en variables, distinguir sus tipos y hacer las
 > primeras operaciones. Y romper algo a propósito para aprender a leer un error.
 
-Abre el REPL para acompañar la guía (`uv run python`) y ve escribiendo lo que
+Abre el REPL para acompañar la guía (`bash bin/repl.sh`) y ve escribiendo lo que
 aparezca en los bloques.
 
 ## Variables: etiquetas, no cajas

@@ -3,7 +3,7 @@
 > **Objetivo:** apilar los meses (`concat`) y cruzar deuda con pagos (`merge`),
 > resolviendo de paso el misterio de los pagos huérfanos.
 
-REPL abierto (`uv run python`).
+REPL abierto (`bash bin/repl.sh`).
 
 ## `concat`: apilar meses
 

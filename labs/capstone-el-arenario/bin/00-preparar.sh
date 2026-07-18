@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────
-#  Preparador del Capstone (macOS / Linux)
+#  Preparador del Capstone (macOS / Linux / Windows con Git Bash)
 #  Uso, desde la raíz del lab:   bash bin/00-preparar.sh
 #
 #  Monta el taller: comprueba uv, crea/sincroniza el entorno con Python 3.13

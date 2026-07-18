@@ -3,7 +3,7 @@
 > **Objetivo:** leer las dos primeras fuentes con pandas y adquirir el ritual de
 > inspeccionar todo lo que cargas.
 
-REPL abierto (`uv run python`), `import pandas as pd`.
+REPL abierto (`bash bin/repl.sh`), `import pandas as pd`.
 
 ## Leer el CSV de Tesorería
 

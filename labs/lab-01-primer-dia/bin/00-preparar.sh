@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ─────────────────────────────────────────────────────────────────────────
-#  Preparador del Lab 01 (macOS / Linux)
+#  Preparador del Lab 01 (macOS / Linux / Windows con Git Bash)
 #  Uso, desde la raíz del lab:   bash bin/00-preparar.sh
 #
 #  Monta el "taller aislado": comprueba uv, crea/sincroniza el entorno virtual

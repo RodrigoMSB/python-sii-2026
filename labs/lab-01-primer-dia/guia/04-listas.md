@@ -9,7 +9,7 @@
 Párate en la **raíz del lab** (`labs/lab-01-primer-dia/`) y abre el REPL:
 
 ```bash
-uv run python
+bash bin/repl.sh
 ```
 
 Ahora trae el cuaderno oficial a tu sesión:

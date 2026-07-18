@@ -35,7 +35,7 @@ están en caché: el preparador no debería descargar nada. Meta: `✔ 8/8` (inc
 > igual: antes de transformar, **diagnosticas**. Si operas a ciegas, rompes cosas
 > que estaban bien.
 
-Abre el REPL (`uv run python`) y mira el censo con las cuatro herramientas del
+Abre el REPL (`bash bin/repl.sh`) y mira el censo con las cuatro herramientas del
 diagnóstico:
 
 ```python

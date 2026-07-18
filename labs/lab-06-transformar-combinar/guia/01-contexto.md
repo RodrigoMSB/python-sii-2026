@@ -26,7 +26,7 @@ La primera vez descarga **matplotlib** (unos MB — ten paciencia). Meta: `✔ 1
 
 ## Las tres piezas
 
-Ábrelas y míralas (REPL: `uv run python`):
+Ábrelas y míralas (REPL: `bash bin/repl.sh`):
 
 ```python
 >>> import pandas as pd

@@ -20,16 +20,18 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 Después de instalar, **cierra y reabre la terminal** (para que reconozca `uv`).
 
-## 🪟 Windows (PowerShell)
+## 🪟 Windows (Git Bash)
 
-Abre **PowerShell** y ejecuta:
+Usa **Git Bash** (viene con [Git para Windows](https://git-scm.com/download/win);
+si ya clonaste el repo, ya lo tienes). Abre Git Bash y ejecuta:
 
-```powershell
-powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
-```
+    powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 
-Después de instalar, **cierra y reabre PowerShell**. Usa preferentemente
-**Windows Terminal** o **PowerShell 7** (se ven mejor los acentos).
+Cierra y reabre Git Bash. Verifica con `uv --version`.
+
+> **El REPL en Git Bash:** cuando una guía te diga que abras el REPL, usa
+> `bash bin/repl.sh` (mismo comando en Mac/Linux). Ese script se encarga de
+> que el prompt `>>>` aparezca bien en Windows.
 
 ## Verifica que quedó bien
 

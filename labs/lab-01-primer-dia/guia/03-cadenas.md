@@ -4,7 +4,7 @@
 > limpiarlo, transformarlo y formatearlo. El código de patente será tu conejillo
 > de indias.
 
-Ten el REPL abierto (`uv run python`).
+Ten el REPL abierto (`bash bin/repl.sh`).
 
 ## Anatomía de un código de patente
 

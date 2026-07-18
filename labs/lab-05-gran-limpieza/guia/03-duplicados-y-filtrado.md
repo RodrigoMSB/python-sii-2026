@@ -3,7 +3,7 @@
 > **Objetivo:** eliminar filas repetidas y descartar los códigos malformados,
 > conociendo `query()` y las expresiones regulares (regex) en pandas.
 
-REPL abierto (`uv run python`); carga y homogeneiza el censo primero (Guía 2).
+REPL abierto (`bash bin/repl.sh`); carga y homogeneiza el censo primero (Guía 2).
 
 ## Duplicados: `duplicated()` marca, `drop_duplicates()` ejecuta
 

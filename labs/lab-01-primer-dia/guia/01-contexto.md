@@ -106,7 +106,7 @@ responde al toque. Es tu libreta de borrador. Ábrela así:
 **Comando que ejecutas:**
 
 ```bash
-uv run python
+bash bin/repl.sh
 ```
 
 Verás un *prompt* con `>>>`. Prueba, línea por línea:
@@ -132,7 +132,7 @@ macOS/Linux, `Ctrl-Z` y Enter en Windows).
 Antes de pasar a la Guía 2, confirma que:
 
 - [ ] El preparador terminó en `✔ 5/5 verificaciones correctas`.
-- [ ] Entraste al REPL con `uv run python` y viste el `>>>`.
+- [ ] Entraste al REPL con `bash bin/repl.sh` y viste el `>>>`.
 - [ ] Hiciste que Python imprimiera algo y sumara números.
 - [ ] Supiste salir del REPL.
 

@@ -3,7 +3,7 @@
 > **Objetivo:** unificar el texto desordenado y convertir los faltantes disfrazados
 > en `NaN` de verdad. Dos herramientas: el accessor `.str` y `na_values`.
 
-REPL abierto (`uv run python`), `import pandas as pd`.
+REPL abierto (`bash bin/repl.sh`), `import pandas as pd`.
 
 ## El accessor `.str`: una operación, toda la columna
 
