@@ -64,5 +64,7 @@ primera vez que corras el preparador.
 - `command not found: uv` / `'uv' no se reconoce…` → cierra y reabre la terminal;
   si insiste, reinicia la sesión.
 - Cada laboratorio trae su propio `docs/troubleshooting.md` con las curas
-  detalladas por sistema (ExecutionPolicy en Windows, PATH en macOS, acentos,
-  antivirus, etc.).
+  detalladas por sistema (PATH en macOS, acentos, antivirus, etc.).
+
+> Si igual usas PowerShell en vez de Git Bash, revisa la nota de ExecutionPolicy
+> en el troubleshooting de cada lab.
