@@ -32,7 +32,7 @@ CENSO_REL = "datos/censo_patentes.csv"
 def _restaurar_censo(cont):
     censo = RAIZ / CENSO_REL
     esta_en_git = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"],
-                                 cwd=str(RAIZ), capture_output=True, text=True)
+                                 cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if esta_en_git.returncode != 0 or esta_en_git.stdout.strip() != "true":
         lc.info("El lab no está dentro de un repo git: no puedo restaurar el censo automáticamente.")
         if censo.is_file():
@@ -41,7 +41,7 @@ def _restaurar_censo(cont):
             lc.error("Falta el censo y no hay git para restaurarlo.", "Vuelve a clonar el repositorio.", cont)
         return
     res = subprocess.run(["git", "checkout", "--", CENSO_REL], cwd=str(RAIZ),
-                         capture_output=True, text=True)
+                         capture_output=True, text=True, encoding="utf-8", errors="replace")
     if res.returncode == 0:
         lc.ok("Censo restaurado a la versión oficial (git checkout).", cont)
     else:
@@ -65,7 +65,7 @@ def main() -> int:
 
     if destino.is_file():
         res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ),
-                             capture_output=True, text=True)
+                             capture_output=True, text=True, encoding="utf-8", errors="replace")
         if res.returncode == 0 and (RAIZ / "salidas" / "informe_limpieza.txt").is_file():
             lc.ok("salidas/informe_limpieza.txt y censo_limpio.* regenerados.", cont)
         else:

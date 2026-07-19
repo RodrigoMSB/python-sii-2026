@@ -52,8 +52,7 @@ def main() -> int:
             [sys.executable, str(destino_triaje)],
             cwd=str(RAIZ),
             capture_output=True,
-            text=True,
-        )
+            text=True, encoding="utf-8", errors="replace")
         if resultado.returncode == 0 and (RAIZ / "salidas" / "informe_triaje.txt").is_file():
             lc.ok("salidas/informe_triaje.txt regenerado.", cont)
         else:

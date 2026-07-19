@@ -12,6 +12,12 @@ salidas/ (contrato C18).
     uv run python arenario.py
 """
 
+import sys as _s
+if hasattr(_s.stdout, "reconfigure"):
+    _s.stdout.reconfigure(encoding="utf-8")   # Windows: imprime UTF-8 sin morir (cp1252)
+    _s.stderr.reconfigure(encoding="utf-8")
+
+
 import json
 import sqlite3
 from pathlib import Path

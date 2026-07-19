@@ -79,7 +79,7 @@ def main() -> int:
     if corruptas:
         lc.info(f"Fuentes corruptas detectadas y eliminadas para reponerlas: {', '.join(corruptas)}.")
     gen = subprocess.run([sys.executable, str(RAIZ / "bin" / "generar_fuentes.py")],
-                         cwd=str(RAIZ), capture_output=True, text=True)
+                         cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if gen.returncode == 0:
         lc.ok("Fuentes verificadas y repuestas en datos/fuentes/ (csv, xlsx, json, db).", cont)
     else:
@@ -97,7 +97,7 @@ def main() -> int:
 
     if destino.is_file():
         res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ),
-                             capture_output=True, text=True)
+                             capture_output=True, text=True, encoding="utf-8", errors="replace")
         if res.returncode == 0 and (RAIZ / "salidas" / "informe_fuentes.txt").is_file():
             lc.ok("salidas/informe_fuentes.txt y exportaciones regenerados.", cont)
         else:

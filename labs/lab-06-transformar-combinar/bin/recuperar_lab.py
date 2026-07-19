@@ -25,7 +25,7 @@ CSVS = ["datos/censo_limpio.csv", "datos/pagos_junio.csv", "datos/pagos_julio.cs
 
 def _restaurar_csvs(cont):
     en_git = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"],
-                            cwd=str(RAIZ), capture_output=True, text=True)
+                            cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if en_git.returncode != 0 or en_git.stdout.strip() != "true":
         lc.info("El lab no está dentro de un repo git: no puedo restaurar los CSV automáticamente.")
         if all((RAIZ / c).is_file() for c in CSVS):
@@ -33,7 +33,7 @@ def _restaurar_csvs(cont):
         else:
             lc.error("Falta algún CSV y no hay git para restaurarlo.", "Vuelve a clonar el repositorio.", cont)
         return
-    res = subprocess.run(["git", "checkout", "--", *CSVS], cwd=str(RAIZ), capture_output=True, text=True)
+    res = subprocess.run(["git", "checkout", "--", *CSVS], cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if res.returncode == 0:
         lc.ok("Los 3 CSV restaurados a su versión oficial (git checkout).", cont)
     else:
@@ -56,7 +56,7 @@ def main() -> int:
         lc.error("No encuentro soluciones/tablero.py.", "¿Lab completo? Vuelve a clonar.", cont)
 
     if destino.is_file():
-        res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ), capture_output=True, text=True)
+        res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
         if res.returncode == 0 and (RAIZ / "salidas" / "informe_tablero.txt").is_file():
             lc.ok("salidas/ (informe, tablero.csv/xlsx y saldo_por_rubro.png) regeneradas.", cont)
         else:

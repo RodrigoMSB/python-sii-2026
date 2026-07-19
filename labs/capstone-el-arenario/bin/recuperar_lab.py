@@ -26,15 +26,15 @@ TEXTO = ["datos/censo_anual.csv", "datos/multas.json"]
 
 def _restaurar_fuentes(cont):
     en_git = subprocess.run(["git", "rev-parse", "--is-inside-work-tree"],
-                            cwd=str(RAIZ), capture_output=True, text=True)
+                            cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if en_git.returncode == 0 and en_git.stdout.strip() == "true":
-        subprocess.run(["git", "checkout", "--", *TEXTO], cwd=str(RAIZ), capture_output=True, text=True)
+        subprocess.run(["git", "checkout", "--", *TEXTO], cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
         lc.ok("Fuentes de texto restauradas (git checkout).", cont)
     else:
         lc.info("Sin git: no restauro las fuentes de texto automáticamente.")
     # binarios: regenerar lo que falte (solo-faltantes, H-04)
     gen = subprocess.run([sys.executable, str(RAIZ / "bin" / "generar_fuentes.py")],
-                         cwd=str(RAIZ), capture_output=True, text=True)
+                         cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
     if gen.returncode == 0:
         lc.ok("Fuentes binarias verificadas/repuestas (xlsx, db).", cont)
     else:
@@ -60,7 +60,7 @@ def main() -> int:
         lc.error("No encuentro soluciones/arenario.py.", "¿Capstone completo? Vuelve a clonar.", cont)
 
     if destino.is_file():
-        res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ), capture_output=True, text=True)
+        res = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ), capture_output=True, text=True, encoding="utf-8", errors="replace")
         if res.returncode == 0 and (RAIZ / "salidas" / "informe_anual.txt").is_file():
             lc.ok("Productos de DEMOSTRACIÓN regenerados en salidas/.", cont)
         else:

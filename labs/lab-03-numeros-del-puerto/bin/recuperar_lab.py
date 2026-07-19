@@ -36,7 +36,7 @@ def main() -> int:
 
     if destino.is_file():
         resultado = subprocess.run([sys.executable, str(destino)], cwd=str(RAIZ),
-                                    capture_output=True, text=True)
+                                    capture_output=True, text=True, encoding="utf-8", errors="replace")
         if resultado.returncode == 0 and (RAIZ / "salidas" / "informe_panorama.txt").is_file():
             lc.ok("salidas/informe_panorama.txt regenerado.", cont)
         else:

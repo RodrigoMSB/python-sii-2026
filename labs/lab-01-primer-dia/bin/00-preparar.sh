@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export PYTHONUTF8=1  # Windows: Python imprime/lee UTF-8 sin morir (cp1252)
 # ─────────────────────────────────────────────────────────────────────────
 #  Preparador del Lab 01 (macOS / Linux / Windows con Git Bash)
 #  Uso, desde la raíz del lab:   bash bin/00-preparar.sh

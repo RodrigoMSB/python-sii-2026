@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export PYTHONUTF8=1  # Windows: Python imprime/lee UTF-8 sin morir (cp1252)
 # ─────────────────────────────────────────────────────────────────────────
 #  Abre el REPL de Python del lab.
 #  Uso, desde la raíz del lab:   bash bin/repl.sh
