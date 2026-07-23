@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 export PYTHONUTF8=1  # Windows: Python imprime/lee UTF-8 sin morir (cp1252)
+export UV_NATIVE_TLS=1  # Redes corporativas (SII): usa los certificados del sistema
 # ─────────────────────────────────────────────────────────────────────────
 #  Preparador del Capstone (macOS / Linux / Windows con Git Bash)
 #  Uso, desde la raíz del lab:   bash bin/00-preparar.sh

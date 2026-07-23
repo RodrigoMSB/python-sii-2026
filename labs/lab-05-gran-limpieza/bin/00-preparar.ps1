@@ -1,4 +1,5 @@
 $env:PYTHONUTF8 = "1"  # Windows: Python imprime/lee UTF-8 sin morir (cp1252)
+$env:UV_NATIVE_TLS = "1"  # Redes corporativas (SII): usa los certificados del sistema
 # ─────────────────────────────────────────────────────────────────────────
 #  Preparador del Lab 05 (Windows / PowerShell)
 #  Uso, desde la raíz del lab:

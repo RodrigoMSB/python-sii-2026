@@ -27,6 +27,32 @@ powershell -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 Cierra y reabre PowerShell. Verifica con `uv --version`.
 
+### `invalid peer certificate: UnknownIssuer` al preparar el lab
+
+Ocurre en redes corporativas que inspeccionan el tráfico HTTPS (es el caso de la
+red del SII). `uv` no reconoce el certificado de la institución y aborta la
+descarga de Python 3.13.
+
+Los scripts del curso ya traen la cura aplicada. Si aun así lo ves —por ejemplo,
+corriendo `uv` a mano fuera de los scripts—, activa la variable:
+
+```bash
+export UV_NATIVE_TLS=1          # 🍎 macOS / 🪟 Git Bash
+```
+```powershell
+$env:UV_NATIVE_TLS = "1"        # 🪟 PowerShell
+```
+
+Para dejarlo permanente en Git Bash:
+```bash
+printf '\nexport UV_NATIVE_TLS=1\n' >> ~/.bashrc
+source ~/.bashrc
+```
+> ⚠️ Ese `printf` se corre **en Git Bash, nunca en PowerShell**: PowerShell
+> escribe el archivo en UTF-16 y lo corrompe, produciendo
+> `bash: $'\377\376export': command not found`. Si ya ocurrió, borra el archivo
+> (`rm ~/.bashrc`) y vuelve a escribirlo desde Git Bash.
+
 ---
 
 ## Síntomas frecuentes
